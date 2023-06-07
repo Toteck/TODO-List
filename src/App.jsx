@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import "./App.css"
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
   const [currentTask, setCurrentTask] = useState('');
 
-  const addTask = () => {
+
+  function adicionarTarefas() {
     if (currentTask.trim() !== '') {
       const newTask = {
         id: tasks.length + 1,
@@ -14,25 +16,15 @@ export default function App() {
       setTasks([...tasks, newTask]);
       setCurrentTask('');
     }
-  };
+  }
 
-  const deleteTask = (taskId) => {
+  function deleteTask(taskId) {
     const updatedTasks = tasks.filter(task => task.id !== taskId);
     setTasks(updatedTasks);
-  };
-
-  const toggleTaskStatus = (taskId) => {
-    const updatedTasks = tasks.map(task => {
-      if (task.id === taskId) {
-        return { ...task, done: !task.done };
-      }
-      return task;
-    });
-    setTasks(updatedTasks);
-  };
+  }
 
   return (
-    <div>
+    <div id= "container">
       <h1>Lista de Tarefas</h1>
       <input
         type="text"
@@ -40,7 +32,7 @@ export default function App() {
         onChange={(e) => setCurrentTask(e.target.value)}
         placeholder="Digite uma tarefa"
       />
-      <button onClick={addTask}>Adicionar</button>
+      <button onClick={adicionarTarefas}>Adicionar</button>
       <ul>
         {tasks.map(task => (
           <li key={task.id}>
