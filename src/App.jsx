@@ -4,7 +4,7 @@ import "./App.css"
 export default function App() {
   const [tarefa, setTarefa] = useState([]);
   const [currentTask, setCurrentTask] = useState('');
-// setCurrentTask
+  
   function adicionarTarefas() {
     if (currentTask.trim() !== '') {
       const newTask = {
@@ -24,22 +24,27 @@ export default function App() {
 
   return (
     <div id= "container">
-      <h1>Lista de Tarefas</h1>
-      <div id= "nav">
+      <h1 id="title">Lista de Tarefas</h1>
+      <div id="nav">
         <input
+          id="input_task"
           type="text"
           value={currentTask}
           onChange={(e) => setCurrentTask(e.target.value)}
           placeholder="Digite uma tarefa"
         />
+        
+        <button id= "button_adc" onClick={adicionarTarefas}>+</button>
+      
       </div>
-      <button onClick={adicionarTarefas}>Adicionar</button>
-      <ul>
+      
+      <ul id="task_list">
         {tarefa.map(task => (
           <li key={task.id}>
-            <span className={task.done ? 'task-done' : ''}>{task.title}</span>
-            <button onClick={() => deleteTask(task.id)}>Concluida</button>
-            <button onClick={() => deleteTask(task.id)}>Excluir</button>
+            <span>{task.id}</span>
+            <span>{task.title}</span>
+            <button id="button_concluir" onClick={() => deleteTask(task.id)}>&#9989;</button>
+            <button id="button_excluir" onClick={() => deleteTask(task.id)}>&#10060;</button>
           </li>
         ))}
       </ul>
