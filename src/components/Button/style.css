@@ -1,0 +1,10 @@
+:root {
+  font-size: 62.5%;
+  font-family: Arial, sans-serif;
+}
+
+.button {
+  padding: 1rem;
+  color: white;
+  border-radius: 1rem;
+}
